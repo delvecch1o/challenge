@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
-class Account extends Model
+class Contapagar extends Model
 {
-    use HasFactory;
-
-    protected $table = 'accounts';
+    use HasFactory, softDeletes;
+    protected $table = 'conta_pagar';
     protected $fillable = [
-        'nome',
-        'saldo',
-        'description',
+        'descricao',
+        'valor',
     ];
 
     public function user()

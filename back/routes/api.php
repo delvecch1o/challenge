@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AccountController;
+use App\Http\Controllers\API\ContaPagarController;
+use App\Http\Controllers\API\TransactionController;
+use App\Http\Controllers\API\TransferenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +32,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('account/update/{account}', [AccountController::class, 'update']);
     Route::delete('account/{account}', [AccountController::class, 'destroy']);
 
+    Route::post('balance/transfer/{account}', [TransferenciaController::class, 'transfer']);
 
+    Route::post('ticket', [ContaPagarController::class, 'create']);
+    Route::get('ticket/show', [ContaPagarController::class, 'show']);
+    Route::get('ticket/show-details/{id}', [ContaPagarController::class, 'showDetails']);
+    Route::put('ticket/update/{contapagar}', [ContaPagarController::class, 'update']);
+    Route::delete('ticket/{contapagar}', [ContaPagarController::class, 'destroy']);
+
+    Route::post('transaction/ticket/{contapagar}/account/{account}', [TransactionController::class, 'transaction']);
+
+    
 });
 
 
